@@ -3,8 +3,14 @@
 
 int max(int* numbers, int size)
 {
-    // Excercise 2
-    // Implement your code below...
+assert(size>0);
 
-    return -1;
+int maxvalue = numbers[0]; // gemmer størsteværdien i array på første plads i arrayet.
+
+   for (int i = 1; i < size; i++) {// loop der tjekker største værdien i et array
+        if (numbers[i] > maxvalue)
+        
+            maxvalue = numbers[i];
+   }
+    return maxvalue;
 }

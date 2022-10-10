@@ -8,8 +8,8 @@ typedef struct node {
 } node;
 
 void add(node *head, int x){
-  /*pre: head points to the first, empty element. The last element's next is NULL
-    post: a new node containing x is added to the end of the list*/
+  /*pre: head peger på det første tomme element, sidste elements next bliver NULL
+    post: en ny node som indeholder x bliver tilføjet til sidst i listen*/
   assert(head!=NULL);
   node *p = head;
   while (p->next!=NULL) {
@@ -22,27 +22,42 @@ void add(node *head, int x){
 }
 
 int size(node *l){
-    // Excercise 3b)
-    // Add your code here... 
 
-    return -1;
+  node *p = l; // Pointer som peger på node elementets *next
+  int i = 0;
+
+  while (p->next != NULL) { // Kører loop ind til next = NULL
+    p = p->next; // sætter p til at pege på node elementets next
+    i++; //tæller længden af listen, selvom første tomme element bliver talt med går det op, da sidste element ikke bliver talt med
+  }
+    return i;
 }
 
 void printout(node *l) {
-  /*Excercise 3d) Implement your changes.. 
-    pre: head points to the first, empty element. The last element's next is NULL
-    post: the values of the list are printed out*/
-    node *p = l->next;
+
+    node *p = l->next; // laver en pointer p, som peger på første ikke tomme element
+  
     while (p!=NULL){
-      printf("%d, ",p->data);
+      printf("%d, ",p->data); // Printer data værdierne
+      p = p->next; // Pointer peger nu på elementets next
     }
     printf("\n");
 }
 
 int largest(node *l){
-    /*Excercise 3e) Add your code below.
-      pre: head points to the first, empty element. The last element's next is NULL. size(l>0)
-      post: returns the largest value of the list*/
-    return -1; 
-}
+      /*
+      pre: head peger på det første tomme element. sidste elements next er NULL,size(l>0)
+      post: returnerer den største værdi i listen */
 
+    node *p = l->next; // Laver en pointer på det første tomme element
+    int result = p->data; // variabel til at gemme resultaterne
+    
+    while(p->next!=NULL) { // Kører loopet indtil sidste element
+    if (p->data > result) { 
+        result = p->data; // Opdaterer result til nuværende største værdi
+    }
+    p = p->next; // Opdaterer p til næste element
+    }
+
+    return result;
+}
